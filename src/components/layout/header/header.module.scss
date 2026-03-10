@@ -1,5 +1,167 @@
 .header {
-  width: 100%;
-  min-height: 100px;
-  background-color: green;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(253, 250, 248, 0.85);
+  transition: background var(--transition-slow), border-color var(--transition-slow);
+
+  :global(html.dark) & {
+    background: rgba(15, 15, 15, 0.88);
+  }
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    height: 64px;
+    padding: 0 2rem;
+    gap: 2rem;
+  }
+}
+
+// ─── LOGO ────────────────────────────────────────────────────────────────────
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transition: transform var(--transition);
+  display: block;
+
+  @media (min-width: 768px) {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo:hover & {
+    transform: scale(1.15) rotate(-3deg);
+  }
+}
+
+.logoText {
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  transition: color var(--transition);
+
+  @media (min-width: 768px) {
+    font-size: 1.25rem;
+  }
+
+  .logo:hover & {
+    color: var(--accent);
+  }
+}
+
+// ─── NAV ─────────────────────────────────────────────────────────────────────
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  margin-left: 0.25rem;
+
+  @media (min-width: 768px) {
+    gap: 0.25rem;
+    margin-left: 1rem;
+  }
+}
+
+.navLink {
+  font-size: 0.82rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  transition: color var(--transition), background var(--transition);
+
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.9rem;
+  }
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--accent-soft);
+  }
+
+  &.active {
+    color: var(--accent);
+    font-weight: 600;
+  }
+}
+
+// ─── CONTROLS ────────────────────────────────────────────────────────────────
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: auto;
+
+  @media (min-width: 768px) {
+    gap: 0.5rem;
+  }
+}
+
+.langKana {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.langEn {
+  font-family: var(--font-kana);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.themeBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition), color var(--transition), transform var(--transition);
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    width: 34px;
+    height: 34px;
+  }
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: rotate(20deg);
+  }
+
+  svg {
+    display: block;
+    flex-shrink: 0;
+  }
 }

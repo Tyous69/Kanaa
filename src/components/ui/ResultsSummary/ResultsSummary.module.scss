@@ -1,0 +1,177 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 2rem 4rem;
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+  animation: fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.scoreCircle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  background: var(--accent-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  box-shadow: 0 0 32px var(--accent-glow);
+}
+
+.scoreNum {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.scoreLabel {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.statVal {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.statLbl {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.statDivider {
+  font-size: 1.5rem;
+  color: var(--border);
+  padding-bottom: 1rem;
+}
+
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sectionTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.resultCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  min-height: 76px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  padding: 0.5rem 0.4rem;
+  gap: 3px;
+  position: relative;
+}
+
+.resultCorrect {
+  border-color: rgba(34, 197, 94, 0.4);
+  background: rgba(34, 197, 94, 0.06);
+}
+
+.resultSkipped {
+  border-color: rgba(240, 63, 82, 0.3);
+  background: rgba(240, 63, 82, 0.06);
+}
+
+// Question kana (grande)
+.resultKana {
+  font-family: var(--font-kana);
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+// Question romaji (mode romaji→kana)
+.resultRomajiQ {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+// Réponse correcte (vert)
+.resultAnswerCorrect {
+  font-family: var(--font-kana);
+  font-size: 0.75rem;
+  color: #22c55e;
+  font-weight: 600;
+  text-align: center;
+}
+
+// Réponse skipped (rouge = la bonne réponse qu'il n'a pas trouvée)
+.resultAnswerSkipped {
+  font-family: var(--font-kana);
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-align: center;
+}
+
+.resultAttempts {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  font-size: 0.55rem;
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}

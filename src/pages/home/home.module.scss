@@ -1,3 +1,148 @@
-.home {
-  color: red;
+.page { position: relative; }
+
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 560px;
+  animation: heroIn 0.8s ease both;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    max-width: 100%;
+  }
+}
+
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.jpSub {
+  font-family: var(--font-kana);
+  font-size: 0.9rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+}
+
+.headline {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+}
+
+.dot { color: var(--accent); }
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 420px;
+}
+
+// L'icône Lucide ArrowRight dans le bouton CTA
+.ctaArrow {
+  transition: transform var(--transition);
+  flex-shrink: 0;
+
+  button:hover & {
+    transform: translateX(4px);
+  }
+}
+
+.decorKana {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  animation: decorIn 1s ease 0.3s both;
+  user-select: none;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  span {
+    font-family: var(--font-kana);
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    opacity: 0.06;
+    line-height: 1;
+
+    &:first-child {
+      color: var(--accent);
+      opacity: 0.15;
+    }
+  }
+}
+
+@keyframes decorIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.about {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  padding: 5rem 2rem;
+}
+
+.aboutInner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.aboutTag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.aboutTitle {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.aboutText {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.aboutSub {
+  font-size: 0.88rem;
+  color: var(--accent);
+  font-style: italic;
 }

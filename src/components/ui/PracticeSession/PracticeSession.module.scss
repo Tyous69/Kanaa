@@ -1,0 +1,177 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 1rem 3rem;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+// ─── BARRE HAUTE ─────────────────────────────────────────────────────────────
+.topBar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progressBar {
+  width: 100%;
+  max-width: 600px;
+  height: 5px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.progressLabel {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+// ─── GRILLE ──────────────────────────────────────────────────────────────────
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  width: 100%;
+}
+
+// ─── CARTE ───────────────────────────────────────────────────────────────────
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 110px;
+  min-height: 110px;
+  padding: 0.75rem 0.5rem;
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition),
+              background var(--transition);
+  box-shadow: var(--shadow);
+
+  &:hover:not(.cardCorrect) {
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px var(--accent-glow);
+  }
+
+  &.cardFocused {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+  }
+
+  &.cardCorrect {
+    border-color: #22c55e;
+    background: rgba(34, 197, 94, 0.06);
+    cursor: default;
+    box-shadow: none;
+  }
+
+  // Animation shake sur mauvaise réponse
+  &.cardShake {
+    animation: shake 0.4s ease;
+    border-color: var(--accent);
+    background: rgba(240, 63, 82, 0.07);
+  }
+}
+
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  15%  { transform: translateX(-7px); }
+  35%  { transform: translateX(7px); }
+  55%  { transform: translateX(-5px); }
+  75%  { transform: translateX(5px); }
+  90%  { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+// ─── QUESTION ────────────────────────────────────────────────────────────────
+.kanaChar {
+  font-family: var(--font-kana);
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--text-primary);
+  user-select: none;
+}
+
+.romajiChar {
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  user-select: none;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+// ─── INPUT ───────────────────────────────────────────────────────────────────
+.input {
+  width: 90px;
+  height: 32px;
+  padding: 0 0.5rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  font-family: var(--font-kana); // kana font pour les deux modes
+  text-align: center;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+
+  &:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+  }
+
+  &::placeholder {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-family: var(--font-ui);
+  }
+}
+
+// ─── RÉPONSE CORRECTE ────────────────────────────────────────────────────────
+.correctAnswer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.correctChar {
+  font-family: var(--font-kana);
+  font-size: 1rem;
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.attempts {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+// ─── BAS ─────────────────────────────────────────────────────────────────────
+.bottomBar {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}

@@ -1,0 +1,157 @@
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    padding: 3rem 2.5rem 5rem;
+    gap: 2rem;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.title {
+  font-size: clamp(1.6rem, 5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    gap: 2rem;
+  }
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.controlLabel {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.toggle {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.modeKana {
+  font-family: var(--font-kana);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.1rem;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  // Cache la scrollbar sur mobile
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.tab {
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all var(--transition);
+  border-radius: 4px 4px 0 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    padding: 0.65rem 1.3rem;
+    font-size: 0.92rem;
+  }
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--accent-soft);
+  }
+
+  &.tabActive {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+  }
+}
+
+.tableActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.selectedCount {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.tableActionBtns {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.tableWrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+
+  @media (min-width: 768px) {
+    border-radius: 18px;
+    padding: 2rem;
+  }
+}
+
+.startArea {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.startCount {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}

@@ -1,0 +1,208 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+// ─── EN-TÊTE COLONNES (desktop uniquement) ───────────────────────────────────
+.columnHeaders {
+  display: none;
+
+  @media (min-width: 640px) {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.2rem;
+  }
+}
+
+.rowLabelSpacer {
+  width: 56px;
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    width: 64px;
+  }
+}
+
+.scriptHeader {
+  flex: 1;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 600;
+  padding-left: 2rem;
+}
+
+// ─── LIGNE ───────────────────────────────────────────────────────────────────
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+.rowLabel {
+  // Sur mobile : label inline au-dessus
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-top: 0.2rem;
+
+  @media (min-width: 640px) {
+    width: 56px;
+    flex-shrink: 0;
+    padding-top: 0.4rem;
+  }
+
+  @media (min-width: 768px) {
+    width: 64px;
+  }
+}
+
+// ─── BLOC PAR SCRIPT ─────────────────────────────────────────────────────────
+.scriptBlock {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+
+  @media (min-width: 640px) {
+    flex: 1;
+  }
+}
+
+// Petit badge hiragana/katakana visible uniquement sur mobile
+// pour différencier les deux blocs sans les headers
+.scriptLabel {
+  display: flex;
+  align-items: center;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  font-family: var(--font-kana);
+  writing-mode: vertical-rl;
+  letter-spacing: 0.05em;
+  align-self: center;
+  opacity: 0.7;
+
+  @media (min-width: 640px) {
+    display: none;
+  }
+}
+
+.groupToggle {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  margin-top: 0.25rem;
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  &.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  &.partial {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+}
+
+// ─── CELLULES ────────────────────────────────────────────────────────────────
+.cells {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // Plus petit sur mobile
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: all var(--transition);
+  gap: 1px;
+
+  @media (min-width: 640px) {
+    width: 56px;
+    height: 56px;
+  }
+
+  @media (min-width: 768px) {
+    width: 60px;
+    height: 60px;
+    gap: 2px;
+  }
+
+  &:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px var(--accent-glow);
+  }
+
+  &.cellSelected {
+    border-color: var(--accent);
+    background: var(--accent);
+
+    .char   { color: #fff; }
+    .romaji { color: rgba(255, 255, 255, 0.75); }
+
+    &:hover { background: var(--accent-hover); }
+  }
+}
+
+.char {
+  font-family: var(--font-kana);
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  line-height: 1;
+  transition: color var(--transition);
+
+  @media (min-width: 640px) {
+    font-size: 1.3rem;
+  }
+}
+
+.romaji {
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  letter-spacing: 0.02em;
+  transition: color var(--transition);
+
+  @media (min-width: 640px) {
+    font-size: 0.6rem;
+  }
+}

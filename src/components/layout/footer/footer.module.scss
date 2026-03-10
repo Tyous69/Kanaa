@@ -1,5 +1,41 @@
 .footer {
-  width: 100%;
-  min-height: 70px;
-  background-color: blue;
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  margin-top: auto;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.kana {
+  font-family: var(--font-kana);
+  font-size: 1.2rem;
+  color: var(--accent);
+  opacity: 0.6;
+}
+
+.text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.heart { color: var(--accent); }
+
+.link {
+  color: var(--accent);
+  transition: opacity var(--transition);
+
+  &:hover { opacity: 0.7; }
 }

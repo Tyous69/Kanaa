@@ -1,11 +1,50 @@
-import styles from './home.module.scss'
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { ArrowRight } from "lucide-react";
+import SakuraCanvas from "../../components/ui/SakuraCanvas/SakuraCanvas";
+import Button from "../../components/ui/Button/Button";
+import styles from "./Home.module.scss";
 
-function Home() {
+export default function Home() {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
   return (
-    <div className={styles.home}>
-      <h1>Home</h1>
-    </div>
-  )
-}
+    <div className={styles.page}>
+      <SakuraCanvas />
 
-export default Home
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <p className={styles.jpSub}>かな・ひらがな・カタカナ</p>
+
+          <h1 className={styles.headline}>
+            Welcome on Kanaa!
+            <span className={styles.dot}>。</span>
+          </h1>
+
+          <p className={styles.subtitle}>{t("home.subtitle")}</p>
+
+          <Button variant="primary" size="lg" onClick={() => navigate("/practice")}>
+            {t("home.cta")}
+            <ArrowRight size={18} strokeWidth={2.5} className={styles.ctaArrow} />
+          </Button>
+        </div>
+
+        <div className={styles.decorKana} aria-hidden="true">
+          <span>あ</span>
+          <span>カ</span>
+          <span>な</span>
+        </div>
+      </section>
+
+      <section className={styles.about}>
+        <div className={styles.aboutInner}>
+          <div className={styles.aboutTag}>About / について</div>
+          <h2 className={styles.aboutTitle}>{t("home.about_title")}</h2>
+          <p className={styles.aboutText}>{t("home.about_text")}</p>
+          <p className={styles.aboutSub}>{t("home.about_sub")}</p>
+        </div>
+      </section>
+    </div>
+  );
+}

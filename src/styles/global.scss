@@ -1,42 +1,92 @@
-// =============================================================================
-// GLOBAL STYLES
-// =============================================================================
-// This file is the single entry point for all global styles.
-// It is imported once in main.tsx and applies to the entire app.
-//
-// Use this file for:
-//   - CSS resets / base styles
-//   - CSS custom properties (variables)
-//   - Typography defaults (font-family, font-size, line-height)
-//   - Global layout rules (box-sizing, margin/padding resets)
-//
-// Do NOT put component-specific styles here.
-// Each component has its own .module.scss file.
-// =============================================================================
+@font-face {
+  font-family: "ChironGoRoundTC";
+  src: url("../fonts/ChironGoRoundTC-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-*,
-*::before,
-*::after {
+@font-face {
+  font-family: "KosugiMaru";
+  src: url("../fonts/KosugiMaru-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --accent:          #f03f52;
+  --accent-hover:    #d42f42;
+  --accent-soft:     rgba(240, 63, 82, 0.12);
+  --accent-glow:     rgba(240, 63, 82, 0.35);
+  --bg:              #fdfaf8;
+  --bg-secondary:    #f5f0ec;
+  --bg-card:         #ffffff;
+  --border:          rgba(0, 0, 0, 0.08);
+  --text-primary:    #1a1a1a;
+  --text-secondary:  #666666;
+  --text-muted:      #999999;
+  --shadow:          0 2px 20px rgba(0, 0, 0, 0.08);
+  --shadow-hover:    0 8px 40px rgba(0, 0, 0, 0.14);
+  --font-ui:         "ChironGoRoundTC", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-kana:       "KosugiMaru", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --transition:      0.2s ease;
+  --transition-slow: 0.4s ease;
+}
+
+html.dark {
+  --bg:            #0f0f0f;
+  --bg-secondary:  #161616;
+  --bg-card:       #1a1a1a;
+  --border:        rgba(255, 255, 255, 0.08);
+  --text-primary:  #f0ece8;
+  --text-secondary:#a0998f;
+  --text-muted:    #5a5550;
+  --shadow:        0 2px 20px rgba(0, 0, 0, 0.4);
+  --shadow-hover:  0 8px 40px rgba(240, 63, 82, 0.2);
+}
+
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-:root {
-  // Colors
-  --color-primary: red;
-  --color-background: #ffffff;
-  --color-text: #213547;
-
-  // Typography
-  --font-family: Inter, system-ui, sans-serif;
-  --font-size-base: 16px;
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: var(--font-family);
-  font-size: var(--font-size-base);
-  color: var(--color-text);
-  background-color: var(--color-background);
-  line-height: 1.5;
+  font-family: var(--font-ui);
+  background-color: var(--bg);
+  color: var(--text-primary);
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+  overflow-x: hidden;
 }
+
+// Structure principale — footer toujours en bas
+.appWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Le main prend tout l'espace disponible, pousse le footer vers le bas
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.font-kana { font-family: var(--font-kana); }
+
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--font-ui); cursor: pointer; border: none; background: none; }
+input { font-family: var(--font-ui); }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }

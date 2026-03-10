@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "practice": "Practice",
+    "home": "Home"
+  },
+  "home": {
+    "tagline": "Master Japanese Kana",
+    "subtitle": "Hiragana & Katakana, one character at a time.",
+    "cta": "Start Practicing",
+    "about_title": "Why Kanaa! ?",
+    "about_text": "I started learning Japanese and fell in love with it. As a web developer, I built this tool to sharpen both skills at once, learning kana while crafting an app I'd actually want to use. Kanaa! is my bridge between two passions.",
+    "about_sub": "Built with passion, for learners like me."
+  },
+  "practice": {
+    "title": "Select your Kana",
+    "subtitle": "Choose the characters you want to practice.",
+    "select_all": "Select All",
+    "deselect_all": "Deselect All",
+    "start": "Start Practice",
+    "mode_label": "Practice Mode",
+    "mode_kana_to_romaji": "Kana → Romaji",
+    "mode_romaji_to_kana": "Romaji → Kana",
+    "selected": "{{count}} characters selected",
+    "hiragana": "Hiragana",
+    "katakana": "Katakana",
+    "basic": "Basic",
+    "dakuten": "Dakuten",
+    "combinations": "Combinations",
+    "groups": {
+      "vowels": "Vowels",
+      "k": "K-row", "s": "S-row", "t": "T-row",
+      "n_row": "N-row", "h": "H-row", "m": "M-row",
+      "y": "Y-row", "r": "R-row", "w": "W-row", "n": "N",
+      "g": "G-row", "z": "Z-row", "d": "D-row",
+      "b": "B-row", "p": "P-row",
+      "ky": "KY-row", "sy": "SH-row", "ty": "CH-row",
+      "ny": "NY-row", "hy": "HY-row", "my": "MY-row",
+      "ry": "RY-row", "gy": "GY-row", "zy": "ZY-row",
+      "dy": "DY-row", "by": "BY-row", "py": "PY-row"
+    }
+  },
+  "session": {
+    "finish": "Finish",
+    "progress": "{{done}} / {{total}}",
+    "placeholder_romaji": "Type romaji...",
+    "placeholder_kana": "Type kana...",
+    "correct": "Correct!",
+    "wrong": "Wrong",
+    "answer_was": "Answer was:"
+  },
+  "results": {
+    "title": "Results",
+    "perfect": "Perfect! No mistakes.",
+    "mistakes": "Mistakes",
+    "character": "Character",
+    "errors": "Errors",
+    "reading": "Reading",
+    "retry": "Retry",
+    "back_menu": "Back to Menu",
+    "correct": "Correct",
+    "skipped": "Not answered"
+  },
+  "footer": {
+    "made_with": "Made with",
+    "and": "and",
+    "by": "by"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "practice": "練習",
+    "home": "ホーム"
+  },
+  "home": {
+    "tagline": "かなをマスターしよう",
+    "subtitle": "ひらがなとカタカナを、一文字ずつ。",
+    "cta": "練習を始める",
+    "about_title": "なぜ Kanaa!？",
+    "about_text": "日本語を学び始めて、すっかり夢中になりました。ウェブ開発者として、自分が本当に使いたいツールを作りながら二つのスキルを同時に磨くことにしました。Kanaa!は二つの情熱をつなぐ橋です。",
+    "about_sub": "情熱を込めて、同じ学習者のために。"
+  },
+  "practice": {
+    "title": "かなを選ぼう",
+    "subtitle": "練習したい文字を選んでください。",
+    "select_all": "すべて選択",
+    "deselect_all": "選択を解除",
+    "start": "練習開始",
+    "mode_label": "練習モード",
+    "mode_kana_to_romaji": "かな → ローマ字",
+    "mode_romaji_to_kana": "ローマ字 → かな",
+    "selected": "{{count}}文字を選択中",
+    "hiragana": "ひらがな",
+    "katakana": "カタカナ",
+    "dakuten": "濁点",
+    "combinations": "組み合わせ",
+    "basic": "基本",
+    "groups": {
+      "vowels": "母音",
+      "k": "か行", "s": "さ行", "t": "た行",
+      "n_row": "な行", "h": "は行", "m": "ま行",
+      "y": "や行", "r": "ら行", "w": "わ行", "n": "ん",
+      "g": "が行", "z": "ざ行", "d": "だ行",
+      "b": "ば行", "p": "ぱ行",
+      "ky": "きゃ行", "sy": "しゃ行", "ty": "ちゃ行",
+      "ny": "にゃ行", "hy": "ひゃ行", "my": "みゃ行",
+      "ry": "りゃ行", "gy": "ぎゃ行", "zy": "じゃ行",
+      "dy": "ぢゃ行", "by": "びゃ行", "py": "ぴゃ行"
+    }
+  },
+  "session": {
+    "finish": "終了",
+    "progress": "{{done}} / {{total}}",
+    "placeholder_romaji": "ローマ字を入力...",
+    "placeholder_kana": "かなを入力...",
+    "correct": "正解！",
+    "wrong": "不正解",
+    "answer_was": "正解は："
+  },
+  "results": {
+    "title": "結果",
+    "perfect": "完璧！ミスなし。",
+    "mistakes": "ミス",
+    "character": "文字",
+    "errors": "エラー数",
+    "reading": "読み方",
+    "retry": "もう一度",
+    "back_menu": "メニューへ戻る",
+    "correct": "正解",
+    "skipped": "未回答"
+  },
+  "footer": {
+    "made_with": "作成：",
+    "and": "と",
+    "by": "作"
+  }
+}
