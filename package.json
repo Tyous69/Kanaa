@@ -30,10 +30,12 @@
     "zustand": "^5.0.11"
   },
   "devDependencies": {
+    "@react-grab/mcp": "^0.1.28",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^5.1.4",
+    "react-grab": "^0.1.28",
     "sass": "^1.97.3",
     "typescript": "^5.9.3"
   }

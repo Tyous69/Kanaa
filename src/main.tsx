@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./styles/global.scss";
 
-// Restore dark mode on page load before React hydrates
 const stored = localStorage.getItem("kanaa-store");
 if (stored) {
   try {
@@ -12,8 +11,11 @@ if (stored) {
       document.documentElement.classList.add("dark");
     }
   } catch {
-    // ignore parse errors
+    // ignore
   }
+} else {
+  // Aucun état sauvegardé → dark mode par défaut
+  document.documentElement.classList.add("dark");
 }
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

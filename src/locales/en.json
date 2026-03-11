@@ -60,6 +60,15 @@
     "correct": "Correct",
     "skipped": "Not answered"
   },
+  "gate": {
+    "hint_no_badge": "Something is missing...",
+    "hint_has_badge": "Insert the key to open The Gate.",
+    "hint_inserting": "Connecting to the Attractor Field...",
+    "hint_unlocked": "The Gate is open.",
+    "divergence_label": "Divergence Meter",
+    "divergence_caption": "World line divergence:",
+    "divergence_sub": "El Psy Kongroo."
+  },
   "footer": {
     "made_with": "Made with",
     "and": "and",

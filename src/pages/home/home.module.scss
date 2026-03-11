@@ -62,16 +62,102 @@
   max-width: 420px;
 }
 
-// L'icône Lucide ArrowRight dans le bouton CTA
 .ctaArrow {
   transition: transform var(--transition);
   flex-shrink: 0;
 
-  button:hover & {
-    transform: translateX(4px);
+  button:hover & { transform: translateX(4px); }
+}
+
+// ─── TRAP ─────────────────────────────────────────────────────────────────────
+.trapWrapper {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease, width 0.4s ease, height 0.4s ease;
+    flex-shrink: 0;
   }
 }
 
+.trapVisible {
+  @media (min-width: 768px) {
+    width: 160px;
+    height: 160px;
+    opacity: 1;
+  }
+}
+
+.trapBox {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 18px;
+  border: 2px dashed var(--border);
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition);
+
+  &:hover { border-color: var(--accent); }
+}
+
+.badgeSilhouette {
+  width: 80px;
+  height: 80px;
+  background: var(--text-primary);
+  opacity: 0.08;
+  mask-image: url("/assets/images/steinsgate-pin.png");
+  -webkit-mask-image: url("/assets/images/steinsgate-pin.png");
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  transition: opacity var(--transition);
+
+  &.collected { opacity: 0.12; }
+}
+
+.badgePickup {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 18px;
+  transition: transform var(--transition);
+
+  &:hover { transform: scale(1.08); }
+}
+
+.badgeImg {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 16px rgba(240, 63, 82, 0.3));
+  animation: badgeFloat 3s ease-in-out infinite;
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+// ─── DECOR KANA ───────────────────────────────────────────────────────────────
 .decorKana {
   display: flex;
   flex-direction: column;
@@ -104,6 +190,7 @@
   to   { opacity: 1; transform: translateX(0); }
 }
 
+// ─── ABOUT ────────────────────────────────────────────────────────────────────
 .about {
   position: relative;
   z-index: 1;

@@ -18,12 +18,18 @@ interface AppState {
   setPracticeMode: (mode: PracticeMode) => void;
   kanaTypeFilter: KanaTypeFilter;
   setKanaTypeFilter: (type: KanaTypeFilter) => void;
+  // Easter egg — Steins;Gate
+  hasBadge: boolean;
+  pickUpBadge: () => void;
+  trapOpen: boolean;
+  openTrap: () => void;
+  closeTrap: () => void;
 }
 
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
-      darkMode: false,
+      darkMode: true,
       toggleDarkMode: () => {
         const next = !get().darkMode;
         set({ darkMode: next });
@@ -38,18 +44,13 @@ export const useAppStore = create<AppState>()(
       },
 
       selectedKanaIds: new Set<string>(),
-
       toggleKana: (id) => {
-        // Crée un nouveau Set à partir des valeurs actuelles pour éviter la mutation
         const current = new Set<string>(get().selectedKanaIds);
         if (current.has(id)) current.delete(id);
         else current.add(id);
         set({ selectedKanaIds: current });
       },
-
-      // Remplace entièrement le Set par les ids fournis
       selectAll: (ids: string[]) => set({ selectedKanaIds: new Set<string>(ids) }),
-
       deselectAll: () => set({ selectedKanaIds: new Set<string>() }),
 
       practiceMode: "kana-to-romaji",
@@ -57,6 +58,13 @@ export const useAppStore = create<AppState>()(
 
       kanaTypeFilter: "hiragana",
       setKanaTypeFilter: (type) => set({ kanaTypeFilter: type }),
+
+      // Easter egg
+      hasBadge: false,
+      pickUpBadge: () => set({ hasBadge: true }),
+      trapOpen: false,
+      openTrap: () => set({ trapOpen: true }),
+      closeTrap: () => set({ trapOpen: false }),
     }),
     {
       name: "kanaa-store",
@@ -66,10 +74,9 @@ export const useAppStore = create<AppState>()(
             const raw = localStorage.getItem(key);
             if (!raw) return null;
             const parsed = JSON.parse(raw);
-            // S'assure que selectedKanaIds est toujours un vrai Set propre
             const ids = parsed?.state?.selectedKanaIds;
             parsed.state.selectedKanaIds = new Set<string>(
-              Array.isArray(ids) ? ids.filter((i): i is string => typeof i === "string") : []
+              Array.isArray(ids) ? ids.filter((i: unknown): i is string => typeof i === "string") : []
             );
             return parsed;
           } catch {
@@ -82,7 +89,6 @@ export const useAppStore = create<AppState>()(
               ...value,
               state: {
                 ...value.state,
-                // Sérialise le Set en tableau trié pour le JSON
                 selectedKanaIds: Array.from(
                   value.state.selectedKanaIds instanceof Set
                     ? value.state.selectedKanaIds
@@ -91,9 +97,7 @@ export const useAppStore = create<AppState>()(
               },
             };
             localStorage.setItem(key, JSON.stringify(toStore));
-          } catch {
-            // ignore write errors
-          }
+          } catch {}
         },
         removeItem: (key) => localStorage.removeItem(key),
       },

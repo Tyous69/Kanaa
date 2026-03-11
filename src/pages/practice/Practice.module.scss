@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  zoom: 1.1; // ← scale tout de 10%
 
   @media (min-width: 768px) {
     padding: 3rem 2.5rem 5rem;

@@ -7,14 +7,25 @@ import styles from "./Header.module.scss";
 
 export default function Header() {
   const { t } = useTranslation();
-  const { darkMode, toggleDarkMode, language, toggleLanguage } = useAppStore();
+  const { darkMode, toggleDarkMode, language, toggleLanguage, openTrap } = useAppStore();
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
+
+        {/* Ghost button — home + desktop only */}
+        {isHome && (
+          <button
+            className={styles.ghostBtn}
+            onClick={openTrap}
+            aria-label="???"
+            tabIndex={-1}
+          />
+        )}
+
         <Link to="/" className={styles.logo}>
-          {/* Fichier dans public/ → chemin URL direct, pas d'import JS */}
           <img src="/assets/icons/logo-kanaa.png" alt="Kanaa!" className={styles.logoImg} />
           <span className={styles.logoText}>Kanaa!</span>
         </Link>
@@ -32,6 +43,12 @@ export default function Header() {
           >
             {t("nav.practice")}
           </Link>
+          <Link
+            to="/the-gate"
+            className={`${styles.navLink} ${styles.gateLink} ${location.pathname === "/the-gate" ? styles.active : ""}`}
+          >
+            The Gate
+          </Link>
         </nav>
 
         <div className={styles.controls}>
@@ -41,7 +58,6 @@ export default function Header() {
               : <span className={styles.langEn}>あ</span>
             }
           </Button>
-
           <button
             className={styles.themeBtn}
             onClick={toggleDarkMode}

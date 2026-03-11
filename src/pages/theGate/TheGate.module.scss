@@ -1,0 +1,175 @@
+.page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 2rem 6rem;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.015) 2px,
+      rgba(0, 0, 0, 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// ─── DIVERGENCE PANEL ─────────────────────────────────────────────────────────
+.divergencePanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  overflow: hidden;
+  transition: height 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #050200;
+  border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+  z-index: 1;
+
+  &.open { height: 420px; }
+}
+
+.divergenceInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 420px;
+  gap: 2rem;
+  padding: 3rem 2rem;
+  animation: fadeInContent 0.6s ease 1s both;
+}
+
+@keyframes fadeInContent {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.divergenceLabel {
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(255, 140, 0, 0.5);
+  font-family: "Courier New", monospace;
+}
+
+.tubesRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.divergenceCaption {
+  font-family: "Courier New", monospace;
+  font-size: 1rem;
+  color: rgba(255, 140, 0, 0.7);
+  letter-spacing: 0.05em;
+
+  strong { color: #ff8c00; }
+}
+
+.divergenceSub {
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
+  color: rgba(255, 140, 0, 0.35);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+// ─── SLOT SECTION ─────────────────────────────────────────────────────────────
+.slotSection {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.slotHint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  font-style: italic;
+  min-height: 1.2em;
+  text-align: center;
+}
+
+.keySlot {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  border: 2px solid var(--border);
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+
+  &.interactive {
+    cursor: pointer;
+    border-color: rgba(240, 63, 82, 0.3);
+
+    &:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 24px var(--accent-glow);
+      transform: translateY(-2px);
+
+      .keySilhouette { opacity: 0.2; }
+    }
+  }
+
+  &.inserted {
+    border-color: rgba(255, 140, 0, 0.6);
+    box-shadow: 0 0 30px rgba(255, 140, 0, 0.25);
+    animation: slotPulse 1.5s ease 3;
+  }
+}
+
+@keyframes slotPulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(255, 140, 0, 0.25); }
+  50%       { box-shadow: 0 0 50px rgba(255, 140, 0, 0.5); }
+}
+
+.keySilhouette {
+  width: 100px;
+  height: 100px;
+  background: var(--text-primary);
+  opacity: 0.08;
+  mask-image: url("/assets/images/steinsgate-pin.png");
+  -webkit-mask-image: url("/assets/images/steinsgate-pin.png");
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  transition: opacity 0.3s ease;
+}
+
+.keyBadge {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(255, 140, 0, 0.5));
+  animation: badgeReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes badgeReveal {
+  from { opacity: 0; transform: scale(0.6) rotate(-10deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}

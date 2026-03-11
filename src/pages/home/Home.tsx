@@ -1,13 +1,20 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import SakuraCanvas from "../../components/ui/SakuraCanvas/SakuraCanvas";
 import Button from "../../components/ui/Button/Button";
+import { useAppStore } from "../../store/useAppStore";
 import styles from "./Home.module.scss";
 
 export default function Home() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { trapOpen, hasBadge, pickUpBadge, closeTrap } = useAppStore();
+
+  useEffect(() => {
+    return () => closeTrap();
+  }, []);
 
   return (
     <div className={styles.page}>
@@ -28,6 +35,31 @@ export default function Home() {
             {t("home.cta")}
             <ArrowRight size={18} strokeWidth={2.5} className={styles.ctaArrow} />
           </Button>
+        </div>
+
+        {/* Trap — desktop only, invisible until ghost button clicked */}
+        <div
+          className={`${styles.trapWrapper} ${trapOpen ? styles.trapVisible : ""}`}
+          aria-hidden="true"
+        >
+          <div className={styles.trapBox}>
+            <div className={`${styles.badgeSilhouette} ${hasBadge ? styles.collected : ""}`} />
+            {!hasBadge && (
+              <button
+                className={styles.badgePickup}
+                onClick={pickUpBadge}
+                title="???"
+                aria-label="Pick up mysterious item"
+              >
+                <img
+                  src="/assets/images/steinsgate-pin.png"
+                  alt="Future Gadget Lab Badge"
+                  className={styles.badgeImg}
+                  draggable={false}
+                />
+              </button>
+            )}
+          </div>
         </div>
 
         <div className={styles.decorKana} aria-hidden="true">

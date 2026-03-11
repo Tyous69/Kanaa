@@ -60,6 +60,15 @@
     "correct": "正解",
     "skipped": "未回答"
   },
+  "gate": {
+    "hint_no_badge": "何かが足りない...",
+    "hint_has_badge": "鍵を挿入してゲートを開け。",
+    "hint_inserting": "アトラクタフィールドに接続中...",
+    "hint_unlocked": "ゲートは開いた。",
+    "divergence_label": "世界線変動率",
+    "divergence_caption": "世界線変動率：",
+    "divergence_sub": "エル・プサイ・コングルゥ。"
+  },
   "footer": {
     "made_with": "作成：",
     "and": "と",

@@ -29,7 +29,30 @@
   }
 }
 
-// ─── LOGO ────────────────────────────────────────────────────────────────────
+// ─── GHOST BUTTON ─────────────────────────────────────────────────────────────
+.ghostBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1.5px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color var(--transition), background var(--transition);
+  order: -1;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+
+  &:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+}
+
+// ─── LOGO ─────────────────────────────────────────────────────────────────────
 .logo {
   display: flex;
   align-items: center;
@@ -72,7 +95,7 @@
   }
 }
 
-// ─── NAV ─────────────────────────────────────────────────────────────────────
+// ─── NAV ──────────────────────────────────────────────────────────────────────
 .nav {
   display: flex;
   align-items: center;
@@ -108,7 +131,21 @@
   }
 }
 
-// ─── CONTROLS ────────────────────────────────────────────────────────────────
+.gateLink {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: inline-flex;
+    font-style: italic;
+    opacity: 0.7;
+    transition: color var(--transition), background var(--transition), opacity var(--transition);
+
+    &:hover { opacity: 1; }
+    &.active { opacity: 1; }
+  }
+}
+
+// ─── CONTROLS ─────────────────────────────────────────────────────────────────
 .controls {
   display: flex;
   align-items: center;
@@ -160,8 +197,5 @@
     transform: rotate(20deg);
   }
 
-  svg {
-    display: block;
-    flex-shrink: 0;
-  }
+  svg { display: block; flex-shrink: 0; }
 }
