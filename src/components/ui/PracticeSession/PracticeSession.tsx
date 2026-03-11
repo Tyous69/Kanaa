@@ -184,6 +184,11 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
                 }
               }}
             >
+              {/* Badge ひ / カ — toujours visible */}
+              <span className={styles.scriptBadge}>
+                {kana.type === "hiragana" ? "ひ" : "カ"}
+              </span>
+
               <span className={questionIsKana ? styles.kanaChar : styles.romajiChar}>
                 {getQuestion(kana)}
               </span>
