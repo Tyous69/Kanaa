@@ -1,6 +1,25 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      (function() {
+        try {
+          var store = localStorage.getItem("kanaa-store");
+          if (store) {
+            var parsed = JSON.parse(store);
+            var dark = parsed?.state?.darkMode;
+            if (dark === true || dark === undefined) {
+              document.documentElement.classList.add("dark");
+            }
+          } else {
+            // Pas de store = première visite = dark par défaut
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
     <script type="module">
       if (import.meta.env.DEV) {
         import("react-grab");
