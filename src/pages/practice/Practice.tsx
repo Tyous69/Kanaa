@@ -53,12 +53,12 @@ export default function Practice() {
   const startSession = () => {
     if (selectedCount === 0) return;
     const selected = allKanas.filter((k) => selectedKanaIds.has(k.id));
-    // Fisher-Yates shuffle
     for (let i = selected.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [selected[i], selected[j]] = [selected[j], selected[i]];
     }
     setSessionKanas(selected);
+    window.scrollTo(0, 0);
     setView("session");
   };
 
@@ -70,6 +70,7 @@ export default function Practice() {
           mode={practiceMode}
           onFinish={(results) => {
             setLastResults(results);
+            window.scrollTo(0, 0);
             setView("results");
           }}
         />
@@ -83,8 +84,14 @@ export default function Practice() {
         <ResultsSummary
           results={lastResults}
           mode={practiceMode}
-          onRetry={() => setView("session")}
-          onBack={() => setView("select")}
+          onRetry={() => {
+            window.scrollTo(0, 0);
+            setView("session");
+          }}
+          onBack={() => {
+            window.scrollTo(0, 0);
+            setView("select");
+          }}
         />
       </div>
     );
