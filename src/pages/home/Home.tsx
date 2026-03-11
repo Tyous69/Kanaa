@@ -62,9 +62,10 @@ export default function Home() {
         </div>
 
         <div className={styles.decorKana} aria-hidden="true">
-          <span>あ</span>
-          <span>カ</span>
+          <span>か</span>
           <span>な</span>
+          <span>あ</span>
+          <span>！</span>
         </div>
       </section>
 

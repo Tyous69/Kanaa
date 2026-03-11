@@ -176,7 +176,7 @@
     opacity: 0.06;
     line-height: 1;
 
-    &:first-child {
+    &:nth-last-child(-n+2) {
       color: var(--accent);
       opacity: 0.15;
     }
