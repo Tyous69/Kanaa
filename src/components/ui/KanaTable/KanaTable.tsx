@@ -9,7 +9,7 @@ interface KanaTableProps {
 
 export default function KanaTable({ groups }: KanaTableProps) {
   const { t } = useTranslation();
-  const { selectedKanaIds, toggleKana } = useAppStore();
+  const { selectedKanaIds, toggleKana, selectAll } = useAppStore();
 
   const isGroupFullySelected = (group: KanaGroup, type: "hiragana" | "katakana") =>
     group[type].every((k) => selectedKanaIds.has(k.id));
@@ -27,12 +27,63 @@ export default function KanaTable({ groups }: KanaTableProps) {
     });
   };
 
+  // Tous les ids d'un type pour tous les groupes du tab
+  const allIdsOfType = (type: "hiragana" | "katakana") =>
+    groups.flatMap((g) => g[type].map((k) => k.id));
+
+  const isAllTypeSelected = (type: "hiragana" | "katakana") =>
+    allIdsOfType(type).every((id) => selectedKanaIds.has(id));
+
+  const isTypePartial = (type: "hiragana" | "katakana") =>
+    allIdsOfType(type).some((id) => selectedKanaIds.has(id)) &&
+    !isAllTypeSelected(type);
+
+  const toggleAllOfType = (type: "hiragana" | "katakana") => {
+    const ids = allIdsOfType(type);
+    const allSelected = isAllTypeSelected(type);
+    if (allSelected) {
+      // Désélectionne uniquement ce type, garde l'autre
+      const remaining = Array.from(selectedKanaIds).filter((id) => !ids.includes(id));
+      selectAll(remaining);
+    } else {
+      // Ajoute tous les ids de ce type
+      const merged = new Set([...Array.from(selectedKanaIds), ...ids]);
+      selectAll(Array.from(merged));
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.columnHeaders}>
         <div className={styles.rowLabelSpacer} />
-        <div className={styles.scriptHeader}>{t("practice.hiragana")}</div>
-        <div className={styles.scriptHeader}>{t("practice.katakana")}</div>
+
+        <div className={styles.scriptHeaderBlock}>
+          <span className={styles.scriptHeader}>{t("practice.hiragana")}</span>
+          <button
+            className={[
+              styles.typeToggle,
+              isAllTypeSelected("hiragana") ? styles.selected : "",
+              isTypePartial("hiragana") ? styles.partial : "",
+            ].filter(Boolean).join(" ")}
+            onClick={() => toggleAllOfType("hiragana")}
+          >
+            {isAllTypeSelected("hiragana") ? "✓" : "○"}
+          </button>
+        </div>
+
+        <div className={styles.scriptHeaderBlock}>
+          <span className={styles.scriptHeader}>{t("practice.katakana")}</span>
+          <button
+            className={[
+              styles.typeToggle,
+              isAllTypeSelected("katakana") ? styles.selected : "",
+              isTypePartial("katakana") ? styles.partial : "",
+            ].filter(Boolean).join(" ")}
+            onClick={() => toggleAllOfType("katakana")}
+          >
+            {isAllTypeSelected("katakana") ? "✓" : "○"}
+          </button>
+        </div>
       </div>
 
       {groups.map((group) => (

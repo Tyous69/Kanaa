@@ -26,16 +26,6 @@
   }
 }
 
-.scriptHeader {
-  flex: 1;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  font-weight: 600;
-  padding-left: 2rem;
-}
-
 .row {
   display: flex;
   flex-direction: column;
@@ -196,5 +186,68 @@
 
   @media (min-width: 640px) {
     font-size: 0.6rem;
+  }
+}
+
+.columnHeaders {
+  display: none;
+
+  @media (min-width: 640px) {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.2rem;
+  }
+}
+
+// Remplace .scriptHeader par ces deux classes :
+.scriptHeaderBlock {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 2rem;
+}
+
+.scriptHeader {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.typeToggle {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  &.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  &.partial {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
   }
 }
