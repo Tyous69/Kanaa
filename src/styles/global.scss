@@ -67,14 +67,12 @@ body {
   overflow-x: hidden;
 }
 
-// Structure principale — footer toujours en bas
 .appWrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-// Le main prend tout l'espace disponible, pousse le footer vers le bas
 .mainContent {
   flex: 1;
   display: flex;

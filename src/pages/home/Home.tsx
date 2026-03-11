@@ -37,7 +37,6 @@ export default function Home() {
           </Button>
         </div>
 
-        {/* Trap — desktop only, invisible until ghost button clicked */}
         <div
           className={`${styles.trapWrapper} ${trapOpen ? styles.trapVisible : ""}`}
           aria-hidden="true"

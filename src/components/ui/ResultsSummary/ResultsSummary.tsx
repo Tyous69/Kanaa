@@ -19,9 +19,6 @@ export default function ResultsSummary({ results, mode, onRetry, onBack }: Resul
   const skipped = results.filter((r) => !r.correct);
   const accuracy = total > 0 ? Math.round((correct.length / total) * 100) : 0;
 
-  // Selon le mode :
-  // kana-to-romaji : question = character (kana), answer = romaji
-  // romaji-to-kana : question = romaji,           answer = character (kana)
   const getQuestion = (r: KanaResult) =>
     mode === "kana-to-romaji" ? r.kana.character : r.kana.romaji;
 
@@ -34,7 +31,6 @@ export default function ResultsSummary({ results, mode, onRetry, onBack }: Resul
     <div className={styles.wrapper}>
       <h2 className={styles.title}>{t("results.title")}</h2>
 
-      {/* Score */}
       <div className={styles.scoreCircle}>
         <span className={styles.scoreNum}>{accuracy}%</span>
         <span className={styles.scoreLabel}>accuracy</span>
@@ -52,7 +48,6 @@ export default function ResultsSummary({ results, mode, onRetry, onBack }: Resul
         </span>
       </div>
 
-      {/* Réussites */}
       {correct.length > 0 && (
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>
@@ -61,11 +56,9 @@ export default function ResultsSummary({ results, mode, onRetry, onBack }: Resul
           <div className={styles.grid}>
             {correct.map((r) => (
               <div key={r.kana.id} className={`${styles.resultCard} ${styles.resultCorrect}`}>
-                {/* Question */}
                 <span className={questionIsKana ? styles.resultKana : styles.resultRomajiQ}>
                   {getQuestion(r)}
                 </span>
-                {/* Réponse donnée */}
                 <span className={styles.resultAnswerCorrect}>
                   {getAnswer(r)}
                 </span>
@@ -78,7 +71,6 @@ export default function ResultsSummary({ results, mode, onRetry, onBack }: Resul
         </div>
       )}
 
-      {/* Non remplis */}
       {skipped.length > 0 && (
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>
@@ -87,11 +79,9 @@ export default function ResultsSummary({ results, mode, onRetry, onBack }: Resul
           <div className={styles.grid}>
             {skipped.map((r) => (
               <div key={r.kana.id} className={`${styles.resultCard} ${styles.resultSkipped}`}>
-                {/* Question */}
                 <span className={questionIsKana ? styles.resultKana : styles.resultRomajiQ}>
                   {getQuestion(r)}
                 </span>
-                {/* Bonne réponse qu'il n'a pas trouvée */}
                 <span className={styles.resultAnswerSkipped}>
                   {getAnswer(r)}
                 </span>

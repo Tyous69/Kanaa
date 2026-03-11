@@ -14,7 +14,6 @@ if (stored) {
     // ignore
   }
 } else {
-  // Aucun état sauvegardé → dark mode par défaut
   document.documentElement.classList.add("dark");
 }
 

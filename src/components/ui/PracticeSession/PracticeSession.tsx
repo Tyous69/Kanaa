@@ -41,7 +41,6 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
   });
 
   const [focusedId, setFocusedId] = useState<string | null>(null);
-  // IDs des cartes qui secouent suite à une erreur
   const [shakingIds, setShakingIds] = useState<Set<string>>(new Set());
   const inputRefs = useRef<Map<string, HTMLInputElement>>(new Map());
 
@@ -56,15 +55,11 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
     }
   }, []);
 
-  // Ce que l'utilisateur doit taper selon le mode
-  // kana-to-romaji : on affiche le kana, on attend le romaji
-  // romaji-to-kana : on affiche le romaji, on attend le caractère japonais
   const getExpected = (kana: Kana): string => {
     if (mode === "kana-to-romaji") return kana.romaji;
-    return kana.character; // le caractère japonais lui-même
+    return kana.character;
   };
 
-  // Ce qui est affiché comme question sur la carte
   const getQuestion = (kana: Kana): string => {
     if (mode === "kana-to-romaji") return kana.character;
     return kana.romaji;
@@ -101,7 +96,6 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
     });
 
     if (correct) {
-      // Focus le prochain kana non-correct
       const remaining = kanas.filter((k) => {
         const r = results.get(k.id);
         return !r?.correct && k.id !== id;
@@ -132,7 +126,6 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
       e.preventDefault();
       validateKana(id);
 
-      // Sur Tab, avancer manuellement au suivant après validation
       if (e.key === "Tab") {
         const currentIndex = kanas.findIndex((k) => k.id === id);
         const next = kanas
@@ -147,7 +140,6 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
     }
   };
 
-  // Valide quand l'input perd le focus (onBlur)
   const handleBlur = (id: string) => {
     validateKana(id);
   };
@@ -158,7 +150,6 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
 
   return (
     <div className={styles.wrapper}>
-      {/* Barre de progression */}
       <div className={styles.topBar}>
         <div className={styles.progressBar}>
           <div
@@ -171,7 +162,6 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
         </span>
       </div>
 
-      {/* Grille */}
       <div className={styles.grid}>
         {kanas.map((kana) => {
           const result = results.get(kana.id)!;
@@ -194,13 +184,11 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
                 }
               }}
             >
-              {/* Question */}
               <span className={questionIsKana ? styles.kanaChar : styles.romajiChar}>
                 {getQuestion(kana)}
               </span>
 
               {result.correct ? (
-                // Réponse correcte : affiche ce que l'user a tapé + attempts si > 1
                 <div className={styles.correctAnswer}>
                   <span className={styles.correctChar}>
                     {result.userInput}
@@ -234,7 +222,6 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
         })}
       </div>
 
-      {/* Finish */}
       <div className={styles.bottomBar}>
         <Button variant="primary" size="lg" onClick={handleFinish}>
           {t("session.finish")}

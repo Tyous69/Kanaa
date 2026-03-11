@@ -15,7 +15,6 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.inner}>
 
-        {/* Ghost button — home + desktop only */}
         {isHome && (
           <button
             className={styles.ghostBtn}

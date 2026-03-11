@@ -91,12 +91,10 @@ export default function Practice() {
         <p className={styles.subtitle}>{t("practice.subtitle")}</p>
       </div>
 
-      {/* Mode */}
       <div className={styles.controls}>
         <div className={styles.controlGroup}>
           <label className={styles.controlLabel}>{t("practice.mode_label")}</label>
           <div className={styles.toggle}>
-            {/* Kana → Romaji */}
             <Button
               variant={practiceMode === "kana-to-romaji" ? "primary" : "secondary"}
               size="sm"
@@ -107,7 +105,6 @@ export default function Practice() {
               <span>Romaji</span>
             </Button>
 
-            {/* Romaji → Kana */}
             <Button
               variant={practiceMode === "romaji-to-kana" ? "primary" : "secondary"}
               size="sm"
@@ -121,7 +118,6 @@ export default function Practice() {
         </div>
       </div>
 
-      {/* Onglets */}
       <div className={styles.tabs}>
         {(["basic", "dakuten", "combinations"] as Tab[]).map((tabKey) => (
           <button
@@ -134,7 +130,6 @@ export default function Practice() {
         ))}
       </div>
 
-      {/* Actions */}
       <div className={styles.tableActions}>
         <span className={styles.selectedCount}>
           {t("practice.selected", { count: selectedCount })}
@@ -152,12 +147,10 @@ export default function Practice() {
         </div>
       </div>
 
-      {/* Tableau */}
       <div className={styles.tableWrapper}>
         <KanaTable groups={tabGroups[tab]} />
       </div>
 
-      {/* Start */}
       <div className={styles.startArea}>
         <Button
           variant="primary"

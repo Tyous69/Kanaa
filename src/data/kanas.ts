@@ -2,8 +2,8 @@ export type KanaType = "hiragana" | "katakana";
 export type KanaCategory = "basic" | "dakuten" | "combination";
 
 export interface Kana {
-  id: string;          // ex: "ka_hiragana" ou "ka_katakana"
-  character: string;   // le caractère affiché
+  id: string;
+  character: string;
   romaji: string;
   type: KanaType;
   group: string;
@@ -17,7 +17,6 @@ export interface KanaGroup {
   katakana: Kana[];
 }
 
-// Helper pour construire les paires
 function pair(
   group: string,
   category: KanaCategory,
@@ -31,7 +30,6 @@ function pair(
   };
 }
 
-// ─── BASIC ───────────────────────────────────────────────────────────────────
 
 const basicRaw = [
   { id: "vowels", labelKey: "vowels", pairs: [
@@ -205,7 +203,6 @@ const combinationsRaw = [
   ]},
 ];
 
-// Convertit le format raw en KanaGroup
 function toGroups(raw: typeof basicRaw): KanaGroup[] {
   return raw.map(({ id, labelKey, pairs }) => ({
     id,

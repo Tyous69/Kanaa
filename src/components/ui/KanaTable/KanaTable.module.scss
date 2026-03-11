@@ -4,7 +4,6 @@
   gap: 0.6rem;
 }
 
-// ─── EN-TÊTE COLONNES (desktop uniquement) ───────────────────────────────────
 .columnHeaders {
   display: none;
 
@@ -37,7 +36,6 @@
   padding-left: 2rem;
 }
 
-// ─── LIGNE ───────────────────────────────────────────────────────────────────
 .row {
   display: flex;
   flex-direction: column;
@@ -51,7 +49,6 @@
 }
 
 .rowLabel {
-  // Sur mobile : label inline au-dessus
   font-size: 0.7rem;
   color: var(--text-muted);
   font-weight: 600;
@@ -70,7 +67,6 @@
   }
 }
 
-// ─── BLOC PAR SCRIPT ─────────────────────────────────────────────────────────
 .scriptBlock {
   display: flex;
   align-items: flex-start;
@@ -81,8 +77,6 @@
   }
 }
 
-// Petit badge hiragana/katakana visible uniquement sur mobile
-// pour différencier les deux blocs sans les headers
 .scriptLabel {
   display: flex;
   align-items: center;
@@ -133,7 +127,6 @@
   }
 }
 
-// ─── CELLULES ────────────────────────────────────────────────────────────────
 .cells {
   display: flex;
   flex-wrap: wrap;
@@ -145,7 +138,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // Plus petit sur mobile
   width: 50px;
   height: 50px;
   border-radius: 8px;

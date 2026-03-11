@@ -18,7 +18,6 @@ interface AppState {
   setPracticeMode: (mode: PracticeMode) => void;
   kanaTypeFilter: KanaTypeFilter;
   setKanaTypeFilter: (type: KanaTypeFilter) => void;
-  // Easter egg — Steins;Gate
   hasBadge: boolean;
   pickUpBadge: () => void;
   trapOpen: boolean;
@@ -59,7 +58,6 @@ export const useAppStore = create<AppState>()(
       kanaTypeFilter: "hiragana",
       setKanaTypeFilter: (type) => set({ kanaTypeFilter: type }),
 
-      // Easter egg
       hasBadge: false,
       pickUpBadge: () => set({ hasBadge: true }),
       trapOpen: false,

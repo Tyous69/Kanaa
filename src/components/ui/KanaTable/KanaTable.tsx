@@ -29,7 +29,6 @@ export default function KanaTable({ groups }: KanaTableProps) {
 
   return (
     <div className={styles.wrapper}>
-      {/* En-tête colonnes — desktop uniquement via CSS */}
       <div className={styles.columnHeaders}>
         <div className={styles.rowLabelSpacer} />
         <div className={styles.scriptHeader}>{t("practice.hiragana")}</div>
@@ -38,14 +37,11 @@ export default function KanaTable({ groups }: KanaTableProps) {
 
       {groups.map((group) => (
         <div key={group.id} className={styles.row}>
-          {/* Label de ligne */}
           <div className={styles.rowLabel}>
             {t(`practice.groups.${group.labelKey}`)}
           </div>
 
-          {/* Hiragana */}
           <div className={styles.scriptBlock}>
-            {/* Label mobile uniquement */}
             <span className={styles.scriptLabel}>ひ</span>
             <button
               className={[
@@ -75,9 +71,7 @@ export default function KanaTable({ groups }: KanaTableProps) {
             </div>
           </div>
 
-          {/* Katakana */}
           <div className={styles.scriptBlock}>
-            {/* Label mobile uniquement */}
             <span className={styles.scriptLabel}>カ</span>
             <button
               className={[

@@ -9,7 +9,6 @@
   margin: 0 auto;
 }
 
-// ─── BARRE HAUTE ─────────────────────────────────────────────────────────────
 .topBar {
   width: 100%;
   display: flex;
@@ -40,7 +39,6 @@
   letter-spacing: 0.05em;
 }
 
-// ─── GRILLE ──────────────────────────────────────────────────────────────────
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -49,7 +47,6 @@
   width: 100%;
 }
 
-// ─── CARTE ───────────────────────────────────────────────────────────────────
 .card {
   display: flex;
   flex-direction: column;
@@ -84,7 +81,6 @@
     box-shadow: none;
   }
 
-  // Animation shake sur mauvaise réponse
   &.cardShake {
     animation: shake 0.4s ease;
     border-color: var(--accent);
@@ -102,7 +98,6 @@
   100% { transform: translateX(0); }
 }
 
-// ─── QUESTION ────────────────────────────────────────────────────────────────
 .kanaChar {
   font-family: var(--font-kana);
   font-size: 2.2rem;
@@ -121,7 +116,6 @@
   text-align: center;
 }
 
-// ─── INPUT ───────────────────────────────────────────────────────────────────
 .input {
   width: 90px;
   height: 32px;
@@ -131,7 +125,7 @@
   background: var(--bg);
   color: var(--text-primary);
   font-size: 0.82rem;
-  font-family: var(--font-kana); // kana font pour les deux modes
+  font-family: var(--font-kana);
   text-align: center;
   outline: none;
   transition: border-color var(--transition), box-shadow var(--transition);
@@ -148,7 +142,6 @@
   }
 }
 
-// ─── RÉPONSE CORRECTE ────────────────────────────────────────────────────────
 .correctAnswer {
   display: flex;
   flex-direction: column;
@@ -169,7 +162,6 @@
   letter-spacing: 0.04em;
 }
 
-// ─── BAS ─────────────────────────────────────────────────────────────────────
 .bottomBar {
   display: flex;
   justify-content: center;
