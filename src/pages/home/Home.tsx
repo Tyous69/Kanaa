@@ -25,7 +25,7 @@ export default function Home() {
           <p className={styles.jpSub}>かな・ひらがな・カタカナ</p>
 
           <h1 className={styles.headline}>
-            Welcome on Kanaa!
+            Welcome to Kanaa!
             <span className={styles.dot}>。</span>
           </h1>
 
