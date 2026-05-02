@@ -85,6 +85,12 @@ export default function Practice() {
           results={lastResults}
           mode={practiceMode}
           onRetry={() => {
+            const reshuffled = [...sessionKanas];
+            for (let i = reshuffled.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [reshuffled[i], reshuffled[j]] = [reshuffled[j], reshuffled[i]];
+            }
+            setSessionKanas(reshuffled);
             window.scrollTo(0, 0);
             setView("session");
           }}
