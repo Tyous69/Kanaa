@@ -7,17 +7,24 @@ import styles from "./ResultsSummary.module.scss";
 interface ResultsSummaryProps {
   results: KanaResult[];
   mode: PracticeMode;
+  time: number;
   onRetry: () => void;
   onBack: () => void;
 }
 
-export default function ResultsSummary({ results, mode, onRetry, onBack }: ResultsSummaryProps) {
-  const { t } = useTranslation();
+export default function ResultsSummary({ results, mode, time, onRetry, onBack }: ResultsSummaryProps) {
+    const { t } = useTranslation();
 
   const total = results.length;
   const correct = results.filter((r) => r.correct);
   const skipped = results.filter((r) => !r.correct);
   const accuracy = total > 0 ? Math.round((correct.length / total) * 100) : 0;
+
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${m}:${sec.toString().padStart(2, "0")}`;
+  };
 
   const getQuestion = (r: KanaResult) =>
     mode === "kana-to-romaji" ? r.kana.character : r.kana.romaji;
@@ -45,6 +52,11 @@ export default function ResultsSummary({ results, mode, onRetry, onBack }: Resul
         <span className={styles.statItem}>
           <span className={styles.statVal}>{total}</span>
           <span className={styles.statLbl}>total</span>
+        </span>
+        <span className={styles.statDivider}>·</span>
+        <span className={styles.statItem}>
+          <span className={styles.statVal}>{formatTime(time)}</span>
+          <span className={styles.statLbl}>time</span>
         </span>
       </div>
 

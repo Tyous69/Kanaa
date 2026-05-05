@@ -41,6 +41,7 @@
   },
   "session": {
     "finish": "終了",
+    "back": "戻る",
     "progress": "{{done}} / {{total}}",
     "placeholder_romaji": "ローマ字を入力...",
     "placeholder_kana": "かなを入力...",

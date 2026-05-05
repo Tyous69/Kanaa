@@ -7,8 +7,77 @@
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
+  // Extra top padding to make room for the sticky back button
+  padding-top: 4.5rem;
 }
 
+// ─── BACK BUTTON — sticky top left ───────────────────────────────────────────
+.backBtn {
+  position: fixed;
+  top: 72px; // below header
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+  z-index: 50;
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+}
+
+// ─── TIMER — sticky, follows scroll ──────────────────────────────────────────
+.timerWidget {
+  position: fixed;
+  top: 72px; // below header
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.7rem;
+  z-index: 50;
+  transition: border-color var(--transition);
+
+  &:hover {
+    border-color: var(--accent);
+  }
+}
+
+.timerToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: color var(--transition);
+
+  &:hover { color: var(--accent); }
+}
+
+.timerDisplay {
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  min-width: 36px;
+}
+
+// ─── TOP BAR ─────────────────────────────────────────────────────────────────
 .topBar {
   width: 100%;
   display: flex;
@@ -39,6 +108,7 @@
   letter-spacing: 0.05em;
 }
 
+// ─── GRID ─────────────────────────────────────────────────────────────────────
 .grid {
   display: flex;
   flex-wrap: wrap;

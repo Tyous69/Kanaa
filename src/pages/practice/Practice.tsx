@@ -48,6 +48,8 @@ export default function Practice() {
     selectAll(remaining);
   };
 
+  const [lastTime, setLastTime] = useState(0);
+
   const selectedCount = selectedKanaIds.size;
 
   const startSession = () => {
@@ -68,8 +70,13 @@ export default function Practice() {
         <PracticeSession
           kanas={sessionKanas}
           mode={practiceMode}
-          onFinish={(results) => {
+          onBack={() => {
+            window.scrollTo(0, 0);
+            setView("select");
+          }}
+          onFinish={(results, time) => {
             setLastResults(results);
+            setLastTime(time);
             window.scrollTo(0, 0);
             setView("results");
           }}
@@ -84,6 +91,7 @@ export default function Practice() {
         <ResultsSummary
           results={lastResults}
           mode={practiceMode}
+          time={lastTime}
           onRetry={() => {
             const reshuffled = [...sessionKanas];
             for (let i = reshuffled.length - 1; i > 0; i--) {

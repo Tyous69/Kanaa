@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import type { Kana } from "../../../data/kanas";
 import type { PracticeMode } from "../../../store/useAppStore";
 import Button from "../Button/Button";
@@ -15,7 +16,8 @@ export interface KanaResult {
 interface PracticeSessionProps {
   kanas: Kana[];
   mode: PracticeMode;
-  onFinish: (results: KanaResult[]) => void;
+  onFinish: (results: KanaResult[], time: number) => void;
+  onBack: () => void;
 }
 
 const ALIASES: Record<string, string[]> = {
@@ -31,7 +33,7 @@ function isCorrect(input: string, expected: string): boolean {
   return (ALIASES[exp] ?? []).includes(norm);
 }
 
-export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessionProps) {
+export default function PracticeSession({ kanas, mode, onFinish, onBack }: PracticeSessionProps) {
   const { t } = useTranslation();
 
   const [results, setResults] = useState<Map<string, KanaResult>>(() => {
@@ -42,11 +44,23 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
 
   const [focusedId, setFocusedId] = useState<string | null>(null);
   const [shakingIds, setShakingIds] = useState<Set<string>>(new Set());
+  const [timerVisible, setTimerVisible] = useState(true);
+  const [seconds, setSeconds] = useState(0);
   const inputRefs = useRef<Map<string, HTMLInputElement>>(new Map());
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const finishedRef = useRef(false);
 
   const total = kanas.length;
   const correctCount = Array.from(results.values()).filter((r) => r.correct).length;
+  const questionIsKana = mode === "kana-to-romaji";
 
+  // Start timer
+  useEffect(() => {
+    timerRef.current = setInterval(() => setSeconds((s) => s + 1), 1000);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, []);
+
+  // Focus first kana
   useEffect(() => {
     const first = kanas[0];
     if (first) {
@@ -55,17 +69,26 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
     }
   }, []);
 
-  const getExpected = (kana: Kana): string => {
-    if (mode === "kana-to-romaji") return kana.romaji;
-    return kana.character;
+  // Auto-finish when all correct
+  useEffect(() => {
+    if (correctCount === total && total > 0 && !finishedRef.current) {
+      finishedRef.current = true;
+      if (timerRef.current) clearInterval(timerRef.current);
+      setTimeout(() => onFinish(Array.from(results.values()), seconds), 600);
+    }
+  }, [correctCount, total]);
+
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${m}:${sec.toString().padStart(2, "0")}`;
   };
 
-  const getQuestion = (kana: Kana): string => {
-    if (mode === "kana-to-romaji") return kana.character;
-    return kana.romaji;
-  };
+  const getExpected = (kana: Kana): string =>
+    mode === "kana-to-romaji" ? kana.romaji : kana.character;
 
-  const questionIsKana = mode === "kana-to-romaji";
+  const getQuestion = (kana: Kana): string =>
+    mode === "kana-to-romaji" ? kana.character : kana.romaji;
 
   const triggerShake = (id: string) => {
     setShakingIds((prev) => new Set(prev).add(id));
@@ -140,16 +163,36 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
     }
   };
 
-  const handleBlur = (id: string) => {
-    validateKana(id);
-  };
+  const handleBlur = (id: string) => { validateKana(id); };
 
   const handleFinish = () => {
-    onFinish(Array.from(results.values()));
+    if (timerRef.current) clearInterval(timerRef.current);
+    onFinish(Array.from(results.values()), seconds);
   };
 
   return (
     <div className={styles.wrapper}>
+
+      {/* Back button — sticky top left */}
+      <button className={styles.backBtn} onClick={onBack} aria-label="Back to selection">
+        <ArrowLeft size={16} strokeWidth={2.5} />
+        <span>{t("session.back")}</span>
+      </button>
+
+      {/* Timer — sticky, follows scroll */}
+      <div className={styles.timerWidget}>
+        <button
+          className={styles.timerToggle}
+          onClick={() => setTimerVisible((v) => !v)}
+          aria-label="Toggle timer"
+        >
+          {timerVisible ? <Eye size={13} /> : <EyeOff size={13} />}
+        </button>
+        {timerVisible && (
+          <span className={styles.timerDisplay}>{formatTime(seconds)}</span>
+        )}
+      </div>
+
       <div className={styles.topBar}>
         <div className={styles.progressBar}>
           <div
@@ -184,7 +227,6 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
                 }
               }}
             >
-              {/* Badge ひ / カ — toujours visible */}
               <span className={styles.scriptBadge}>
                 {kana.type === "hiragana" ? "ひ" : "カ"}
               </span>
@@ -195,9 +237,7 @@ export default function PracticeSession({ kanas, mode, onFinish }: PracticeSessi
 
               {result.correct ? (
                 <div className={styles.correctAnswer}>
-                  <span className={styles.correctChar}>
-                    {result.userInput}
-                  </span>
+                  <span className={styles.correctChar}>{result.userInput}</span>
                   {result.attempts > 1 && (
                     <span className={styles.attempts}>×{result.attempts}</span>
                   )}
