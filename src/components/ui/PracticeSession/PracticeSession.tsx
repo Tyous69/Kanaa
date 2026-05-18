@@ -161,6 +161,46 @@ export default function PracticeSession({ kanas, mode, onFinish, onBack }: Pract
         }
       }
     }
+
+    {/*Directional Key*/}
+    if (["ArrowRight", "ArrowLeft", "ArrowUp", "ArrowDown"].includes(e.key)) {
+      e.preventDefault();
+      const currentIndex = kanas.findIndex((k) => k.id === id);
+
+      if (e.key === "ArrowRight") {
+        const next = kanas[(currentIndex + 1) % kanas.length];
+        if (next && !results.get(next.id)?.correct) {
+          setFocusedId(next.id);
+          setTimeout(() => inputRefs.current.get(next.id)?.focus(), 30);
+        }
+      }
+
+      if (e.key === "ArrowLeft") {
+        const prev = kanas[(currentIndex - 1 + kanas.length) % kanas.length];
+        if (prev && !results.get(prev.id)?.correct) {
+          setFocusedId(prev.id);
+          setTimeout(() => inputRefs.current.get(prev.id)?.focus(), 30);
+        }
+      }
+
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        const cardWidth = 110 + 12;
+        const containerWidth = window.innerWidth > 960 ? 960 : window.innerWidth;
+        const cardsPerRow = Math.max(1, Math.floor(containerWidth / cardWidth));
+
+        const targetIndex = e.key === "ArrowDown"
+          ? currentIndex + cardsPerRow
+          : currentIndex - cardsPerRow;
+
+        if (targetIndex >= 0 && targetIndex < kanas.length) {
+          const target = kanas[targetIndex];
+          if (target && !results.get(target.id)?.correct) {
+            setFocusedId(target.id);
+            setTimeout(() => inputRefs.current.get(target.id)?.focus(), 30);
+          }
+        }
+      }
+    }
   };
 
   const handleBlur = (id: string) => { validateKana(id); };
