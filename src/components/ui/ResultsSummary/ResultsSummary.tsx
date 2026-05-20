@@ -40,23 +40,23 @@ export default function ResultsSummary({ results, mode, time, onRetry, onBack }:
 
       <div className={styles.scoreCircle}>
         <span className={styles.scoreNum}>{accuracy}%</span>
-        <span className={styles.scoreLabel}>accuracy</span>
+        <span className={styles.scoreLabel}>{t("results.accuracy")}</span>
       </div>
 
       <div className={styles.stats}>
         <span className={styles.statItem}>
           <span className={styles.statVal}>{correct.length}</span>
-          <span className={styles.statLbl}>correct</span>
+          <span className={styles.statLbl}>{t("results.correct")}</span>
         </span>
         <span className={styles.statDivider}>/</span>
         <span className={styles.statItem}>
           <span className={styles.statVal}>{total}</span>
-          <span className={styles.statLbl}>total</span>
+          <span className={styles.statLbl}>{t("results.total")}</span>
         </span>
         <span className={styles.statDivider}>·</span>
         <span className={styles.statItem}>
           <span className={styles.statVal}>{formatTime(time)}</span>
-          <span className={styles.statLbl}>time</span>
+          <span className={styles.statLbl}>{t("results.time")}</span>
         </span>
       </div>
 

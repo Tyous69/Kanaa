@@ -59,6 +59,9 @@
     "reading": "Reading",
     "retry": "Retry",
     "back_menu": "Back to Menu",
+    "total": "Total",
+    "time": "Time",
+    "accuracy": "Accuracy",
     "correct": "Correct",
     "skipped": "Not answered"
   },

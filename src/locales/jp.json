@@ -59,6 +59,9 @@
     "reading": "読み方",
     "retry": "もう一度",
     "back_menu": "メニューへ戻る",
+    "total": "合計",
+    "time": "時間",
+    "accuracy": "正確さ",
     "correct": "正解",
     "skipped": "未回答"
   },
