@@ -16,6 +16,7 @@
     "subtitle": "練習したい文字を選んでください。",
     "select_all": "すべて選択",
     "deselect_all": "選択を解除",
+    "clear_all": "すべて消去  ",
     "start": "練習開始",
     "mode_label": "練習モード",
     "mode_kana_to_romaji": "かな → ローマ字",

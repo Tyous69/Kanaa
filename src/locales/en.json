@@ -16,6 +16,7 @@
     "subtitle": "Choose the characters you want to practice.",
     "select_all": "Select All",
     "deselect_all": "Deselect All",
+    "clear_all": "Clear All",
     "start": "Start Practice",
     "mode_label": "Practice Mode",
     "mode_kana_to_romaji": "Kana → Romaji",

@@ -169,7 +169,7 @@ export default function Practice() {
             {t("practice.deselect_all")}
           </Button>
           <Button variant="ghost" size="sm" onClick={deselectAll}>
-            Clear All
+            {t("practice.clear_all")}
           </Button>
         </div>
       </div>
